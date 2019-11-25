@@ -10,10 +10,15 @@
                         <v-text-field
                             v-model="email"
                             label="e-mail"
+                            solo
                         ></v-text-field>
                         <v-text-field
                             v-model="password"
+                              :append-icon="show ? 'mdi-eye' : 'mdi-eye-off'"
+                              :type="show ? 'text' : 'password'"
                             label="password"
+                            @click:append="show = !show"
+                            solo
                         ></v-text-field>
                     </v-card-text>
                     <v-card-actions>
@@ -31,13 +36,15 @@ export default {
   data () {
     return {
       email: '',
-      password: ''
+      password: '',
+      show: false
     }
   },
   methods: {
     login () {
       // backend에 요청
-      console.log('Login')
+      console.log(this.email)
+      console.log(this.password)
     }
   }
 }
