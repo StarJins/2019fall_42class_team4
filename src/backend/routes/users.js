@@ -13,7 +13,8 @@ let firestore = firebase.firestore();
 router.get('/:user_id', function (req, res, next) {
   let mode = req.query.mode
   let user_id = req.params.user_id
-  firestore.collection('users').doc(user_id).get()
+  // firestore.collection('users').doc(user_id).get()
+  firestore.collection('/user').where('id', '==', user_id).get()
       .then((snapshot) => {
         if (snapshot.empty) {
           throw 'No matching user documents'
@@ -57,7 +58,7 @@ router.get('/:user_id', function (req, res, next) {
               res.status(200).send(result)})
           }
           else {
-            res.status(200).send(doc.data())
+            res.status(200).send(user)
           }
         });
       })
